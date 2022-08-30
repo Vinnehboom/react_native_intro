@@ -1,0 +1,46 @@
+**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
+import React, { useState} from 'react';
+import type {Node} from 'react';
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  StatusBar,
+  View,
+} from 'react-native';
+import { colors } from './utils/colors.js';
+import { Focus } from './features/focus.js';
+import { Timer } from './features/Timer.js';
+const App: () => Node = () => {
+
+  const [currentSubject, setCurrentSubject] = useState(null);
+  return (
+    <SafeAreaView style={styles.container}>
+        {!currentSubject ?  ( <Focus addSubject={setCurrentSubject} /> )
+        : (<View>
+            <Timer
+            focusSubject={currentSubject}
+            onTimerEnd={() => {}}
+            clearSubject={() => {}}
+            />
+         </View>)}
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+    container: {
+    flex: 1,
+    paddingTop: 0,
+    backgroundColor: colors.darkBlue
+    }
+});
+
+export default App;
